@@ -26,6 +26,7 @@ const StyledHeader = styled.header`
       display: flex;
       align-items: center;
       cursor: pointer;
+      position: relative;
     }
   }
 `;

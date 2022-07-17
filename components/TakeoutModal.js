@@ -3,10 +3,13 @@ import Button from '../components/Button';
 import styled from 'styled-components';
 
 const StyledTakeout = styled.div`
+  position: absolute;
   height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
   transition: 0.5s;
   transform: translateY(0);
-  position: relative;
   z-index: 999;
 
   &.off {
@@ -48,7 +51,7 @@ const StyledTakeout = styled.div`
   }
 `;
 
-const TakeoutModal = ({ takeoutModal, setTakeoutModal }) => {
+const TakeoutModal = ({ takeoutModal, setTakeoutModal, userState, setUserState }) => {
   return (
     <StyledTakeout className={takeoutModal ? '' : 'off'}>
       <div className='upSide'>
@@ -57,10 +60,24 @@ const TakeoutModal = ({ takeoutModal, setTakeoutModal }) => {
       <div className='downSide'>
         <h3>식사 장소를 선택해주세요</h3>
         <div className='btnContainer'>
-          <Button width={160} height={60} onClick={() => setTakeoutModal(false)}>
+          <Button
+            width={160}
+            height={60}
+            onClick={() => {
+              setTakeoutModal(false);
+              setUserState({ ...userState, takeout: false });
+            }}
+          >
             먹고가기
           </Button>
-          <Button width={160} height={60} onClick={() => setTakeoutModal(false)}>
+          <Button
+            width={160}
+            height={60}
+            onClick={() => {
+              setTakeoutModal(false);
+              setUserState({ ...userState, takeout: true });
+            }}
+          >
             포장하기
           </Button>
         </div>

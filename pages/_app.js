@@ -27,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: white;
     border-radius: 20px;
     overflow: hidden;
+    position: relative;
   }
 
   a {

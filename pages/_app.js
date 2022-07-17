@@ -14,7 +14,6 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     width: 100vw;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,11 +21,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #__next {
-    width: 540px;
-    height: 960px;
+    width: 100vw;
     background-color: white;
-    border-radius: 20px;
-    overflow: hidden;
     position: relative;
   }
 

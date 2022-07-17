@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from 'react';
 import { MAIN_COLOR } from '../theme';
 
 const IntroMain = styled.main`
-  height: 100%;
   overflow: hidden;
   padding-top: 20px;
 
@@ -26,7 +25,7 @@ const IntroMain = styled.main`
 
       p {
         text-align: center;
-        font-size: 18px;
+        font-size: 14px;
         font-weight: 700;
         color: rgb(140, 140, 140);
         transition: 0.3s;
@@ -52,6 +51,15 @@ const Home = () => {
 
   const [userState, setUserState] = useState({
     takeout: false,
+    pickItem: [
+      {
+        name: '트로피칼샌드위치',
+        length: 30,
+        source: ['어니언 소스', '볼케이노 소스'],
+        exceptVeg: ['피방'],
+        withItem: '쿠키음료세트',
+      },
+    ],
   });
 
   let x,
@@ -94,6 +102,8 @@ const Home = () => {
     } else if (speed > 0.3 || (transX > -220 && speed !== 0)) {
       gnbRef.current.style.transform = `translateX(0)`;
     }
+
+    // 270 => ul width / 3 으로 고치기
   };
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const StyledTakeout = styled.div`
   position: absolute;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   top: 0;
   left: 0;
@@ -23,6 +23,7 @@ const StyledTakeout = styled.div`
     padding-top: 100px;
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2);
     position: relative;
+    background-color: red;
 
     h2 {
       text-align: center;
@@ -39,7 +40,7 @@ const StyledTakeout = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 50px;
     font-size: 20px;
 
     div.btnContainer {

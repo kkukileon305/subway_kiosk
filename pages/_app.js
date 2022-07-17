@@ -18,11 +18,15 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: lightgray;
   }
 
   #__next {
     width: 540px;
     height: 960px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
   }
 
   a {

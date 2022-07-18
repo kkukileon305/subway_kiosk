@@ -64,7 +64,7 @@ const TakeoutModal = ({ takeoutModal, setTakeoutModal, userState, setUserState }
           <Button
             width={160}
             height={60}
-            onClick={() => {
+            onClick={(e) => {
               setTakeoutModal(false);
               setUserState({ ...userState, takeout: false });
             }}

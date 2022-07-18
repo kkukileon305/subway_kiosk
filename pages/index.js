@@ -1,47 +1,9 @@
-import styled from 'styled-components';
 import TakeoutModal from '../components/TakeoutModal';
 import Header from '../components/Header';
 import { useEffect, useRef, useState } from 'react';
-import { MAIN_COLOR } from '../theme';
-
-const IntroMain = styled.main`
-  overflow: hidden;
-  padding-top: 20px;
-
-  ul {
-    display: flex;
-    justify-content: center;
-    width: 150%;
-    transform: translateX(0);
-    gap: 20px;
-    padding: 0 20px;
-
-    li {
-      width: calc(100% / 6);
-      height: 42px;
-      padding: 10px 0;
-      border: 1px solid rgb(140, 140, 140);
-      border-radius: 10px;
-
-      p {
-        text-align: center;
-        font-size: 14px;
-        font-weight: 700;
-        color: rgb(140, 140, 140);
-        transition: 0.3s;
-      }
-
-      &.on {
-        border: 1px solid ${MAIN_COLOR};
-        p {
-          color: ${MAIN_COLOR};
-        }
-      }
-    }
-  }
-`;
-
-const menuData = ['샌드위치', '랩 기타', '샐러드', '아침메뉴', '스마일 썹', '단체메뉴'];
+import { gnbData, menuData } from '../data';
+import StyledMain from '../styles/MainStyle';
+import MenuList from '../components/MenuList';
 
 const Home = () => {
   const [takeoutModal, setTakeoutModal] = useState(true);
@@ -66,6 +28,8 @@ const Home = () => {
     startX,
     transX,
     mainX,
+    ulWidth,
+    liWidth,
     time = 0;
 
   const touchStartHandler = (e) => {
@@ -74,9 +38,9 @@ const Home = () => {
     } = e;
 
     gnbRef.current.style.transition = '0s';
+    time = new Date().getTime();
 
     startX = clientX;
-    time = new Date().getTime();
     x = gnbRef.current.getBoundingClientRect().x;
   };
 
@@ -95,18 +59,29 @@ const Home = () => {
       changedTouches: [{ clientX }],
     } = e;
     const speed = (clientX - startX) / (new Date().getTime() - time);
+    console.log(speed);
 
     gnbRef.current.style.transition = '0.3s';
-    if (speed < -0.3 || (transX < -50 && speed < 0) || (transX > -270 && transX < -220)) {
-      gnbRef.current.style.transform = `translateX(-270px)`;
-    } else if (speed > 0.3 || (transX > -220 && speed !== 0)) {
-      gnbRef.current.style.transform = `translateX(0)`;
-    }
 
-    // 270 => ul width / 3 으로 고치기
+    if (speed < -0.3) {
+      gnbRef.current.style.transform = `translateX(-${ulWidth * 0.41666}px)`;
+    } else if (speed > 0.3) {
+      gnbRef.current.style.transform = `translateX(0)`;
+    } else if (transX > -liWidth && speed !== 0) {
+      gnbRef.current.style.transform = `translateX(0)`;
+    } else if (transX <= -liWidth && transX > -liWidth * 2 && speed !== 0) {
+      gnbRef.current.style.transform = `translateX(-${liWidth}px)`;
+    } else if (transX <= -liWidth * 2 && transX > -liWidth * 2.5 && speed !== 0) {
+      gnbRef.current.style.transform = `translateX(-${liWidth * 2}px)`;
+    } else if (transX < -ulWidth * 0.41666 && speed !== 0) {
+      gnbRef.current.style.transform = `translateX(-${ulWidth * 0.41666}px)`;
+    }
   };
 
   useEffect(() => {
+    ulWidth = gnbRef.current.getBoundingClientRect().width;
+    liWidth = ulWidth / 6;
+
     gnbRef.current.addEventListener('touchstart', touchStartHandler, { passive: true });
     gnbRef.current.addEventListener('touchmove', touchMoveHandler, { passive: true });
     gnbRef.current.addEventListener('touchend', touchEndHandler, { passive: true });
@@ -130,9 +105,9 @@ const Home = () => {
         setUserState={setUserState}
       />
       <Header setTakeoutModal={setTakeoutModal} />
-      <IntroMain ref={mainRef}>
+      <StyledMain ref={mainRef} menu={menu}>
         <ul ref={gnbRef}>
-          {menuData.map((e, i) => (
+          {gnbData.map((e, i) => (
             <li
               key={i} //
               className={menu === i ? 'on' : ''}
@@ -142,7 +117,8 @@ const Home = () => {
             </li>
           ))}
         </ul>
-      </IntroMain>
+        <MenuList menuData={menuData} />
+      </StyledMain>
     </>
   );
 };

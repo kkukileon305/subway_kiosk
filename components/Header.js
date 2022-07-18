@@ -31,12 +31,20 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Header = ({ setTakeoutModal }) => {
+const Header = ({ setTakeoutModal, setUserState }) => {
   return (
     <StyledHeader>
       <h1>SUBBWAY</h1>
       <ul>
-        <li onClick={() => setTakeoutModal(true)}>
+        <li
+          onClick={() => {
+            setTakeoutModal(true);
+            setUserState({
+              takeout: false,
+              pickItem: [],
+            });
+          }}
+        >
           <AiOutlineHome size={20} color='white' />
         </li>
       </ul>

@@ -1,6 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { MAIN_COLOR } from '../theme';
 import { useEffect, useRef, useState } from 'react';
+
+const fadeInOut = keyframes`
+  0% {
+    
+  }
+
+  100% {
+
+  }
+`;
 
 const StyledGnbList = styled.ul`
   display: flex;
@@ -17,6 +27,7 @@ const StyledGnbList = styled.ul`
     align-items: center;
     gap: 10px;
     padding: 10px 0;
+    overflow: hidden;
 
     p {
       text-align: center;
@@ -27,6 +38,7 @@ const StyledGnbList = styled.ul`
     }
 
     &.on {
+      animation: name duration timing-function delay iteration-count direction fill-mode;
       p {
         color: ${MAIN_COLOR};
       }
@@ -46,7 +58,7 @@ const StyledGnbList = styled.ul`
   }
 `;
 
-const GnbList = ({ gnbData, menu, mainX, setMenu }) => {
+const GnbList = ({ gnbData, menu, mainX, setMenu, loading }) => {
   const gnbRef = useRef(null);
 
   let x,
@@ -105,13 +117,13 @@ const GnbList = ({ gnbData, menu, mainX, setMenu }) => {
     ulWidth = gnbRef.current.getBoundingClientRect().width;
     liWidth = ulWidth / 6;
 
-    gnbRef.current.addEventListener('touchstart', touchStartHandler, { passive: true });
-    gnbRef.current.addEventListener('touchmove', touchMoveHandler, { passive: true });
-    gnbRef.current.addEventListener('touchend', touchEndHandler, { passive: true });
+    gnbRef.current && gnbRef.current.addEventListener('touchstart', touchStartHandler, { passive: true });
+    gnbRef.current && gnbRef.current.addEventListener('touchmove', touchMoveHandler, { passive: true });
+    gnbRef.current && gnbRef.current.addEventListener('touchend', touchEndHandler, { passive: true });
     return () => {
-      gnbRef.current.removeEventListener('touchstart', touchStartHandler);
-      gnbRef.current.removeEventListener('touchmove', touchMoveHandler);
-      gnbRef.current.removeEventListener('touchend', touchEndHandler);
+      gnbRef.current && gnbRef.current.removeEventListener('touchstart', touchStartHandler);
+      gnbRef.current && gnbRef.current.removeEventListener('touchmove', touchMoveHandler);
+      gnbRef.current && gnbRef.current.removeEventListener('touchend', touchEndHandler);
     };
   }, [gnbRef.current]);
 
@@ -121,7 +133,7 @@ const GnbList = ({ gnbData, menu, mainX, setMenu }) => {
         <li
           key={i} //
           className={menu === i ? 'on' : ''}
-          onClick={() => setMenu(i)}
+          onClick={() => !loading && setMenu(i)}
         >
           <p>{e}</p>
         </li>

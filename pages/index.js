@@ -7,20 +7,32 @@ import MenuList from '../components/MenuList';
 import GnbList from '../components/GnbList';
 import getMenuData from '../getMenuData';
 import SkeletonList from '../components/SkeletonList';
+import ItemModal from '../components/ItemModal';
 
 const Home = () => {
+  let mainX = 0;
   const [loading, setLoading] = useState(true);
   const [takeoutModal, setTakeoutModal] = useState(true);
   const [menu, setMenu] = useState(0);
   const [menuData, setMenuData] = useState();
+  const [cart, setCart] = useState([]);
+  const [item, setItem] = useState();
   const mainRef = useRef(null);
-
-  let mainX = 0;
-
   const [userState, setUserState] = useState({
     takeout: false,
     pickItem: [],
   });
+
+  const init = () => {
+    setUserState({
+      takeout: false,
+      pickItem: [],
+    });
+    setItem();
+    setCart([]);
+    setMenu(0);
+    setTakeoutModal(true);
+  };
 
   useEffect(() => {
     mainX = mainRef.current.getBoundingClientRect().x;
@@ -43,6 +55,10 @@ const Home = () => {
     }
   }, [takeoutModal, menu]);
 
+  const pickItemHandler = (e) => {
+    setItem(e);
+  };
+
   return (
     <>
       <TakeoutModal
@@ -51,7 +67,15 @@ const Home = () => {
         userState={userState}
         setUserState={setUserState}
       />
-      <Header setTakeoutModal={setTakeoutModal} setUserState={setUserState} />
+      {item && (
+        <ItemModal //
+          item={item}
+          setItem={setItem}
+          cart={cart}
+          setCart={setCart}
+        />
+      )}
+      <Header init={init} />
       <StyledMain ref={mainRef} menu={menu}>
         <GnbList
           gnbData={gnbData} //
@@ -60,7 +84,16 @@ const Home = () => {
           setMenu={setMenu}
           loading={loading}
         />
-        {loading ? <SkeletonList /> : <MenuList menuData={menuData} menu={menu} />}
+        {loading ? (
+          <SkeletonList />
+        ) : (
+          <MenuList //
+            menuData={menuData}
+            menu={menu}
+            pickItemHandler={pickItemHandler}
+            cart={cart}
+          />
+        )}
       </StyledMain>
     </>
   );

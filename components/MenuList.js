@@ -48,7 +48,7 @@ const StyledDiv = styled.div`
           font-weight: 700;
         }
 
-        p.enName {
+        p {
           font-size: 16px;
           line-height: 1.2;
           color: rgb(140, 140, 140);
@@ -58,7 +58,7 @@ const StyledDiv = styled.div`
   }
 `;
 
-const MenuList = ({ menuData: { sand, wrap, salad, breakfast, smlie, group }, menuData, menu }) => {
+const MenuList = ({ menuData, menu, pickItemHandler, cart }) => {
   const [curMenuName, setCurMenuName] = useState('샌드위치');
   const [curMenu, setCurMenu] = useState();
 
@@ -72,15 +72,15 @@ const MenuList = ({ menuData: { sand, wrap, salad, breakfast, smlie, group }, me
 
   return (
     <StyledDiv>
-      <h2>{curMenuName.toUpperCase()}</h2>
+      <h2 onClick={() => console.log(cart)}>{curMenuName.toUpperCase()}</h2>
       <ul>
         {curMenu &&
           curMenu.map((e, i) => (
-            <li key={i}>
+            <li key={i} onClick={() => pickItemHandler(e)}>
               <div className='circle' style={{ backgroundImage: `url(${e.imageUrl})` }}></div>
               <div className='right'>
                 <h3>{e.krName}</h3>
-                <p className='enName'>{e.enName}</p>
+                <p>{e.enName}</p>
               </div>
             </li>
           ))}

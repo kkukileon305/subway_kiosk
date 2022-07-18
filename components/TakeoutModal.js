@@ -9,12 +9,8 @@ const StyledTakeout = styled.div`
   top: 0;
   left: 0;
   transition: 0.5s;
-  transform: translateY(0);
+  transform: translateY(${({ takeoutModal }) => (takeoutModal ? '0' : '-100%')});
   z-index: 999;
-
-  &.off {
-    transform: translateY(-100%);
-  }
 
   div.upSide {
     height: 70%;
@@ -54,7 +50,7 @@ const StyledTakeout = styled.div`
 
 const TakeoutModal = ({ takeoutModal, setTakeoutModal, userState, setUserState }) => {
   return (
-    <StyledTakeout className={takeoutModal ? '' : 'off'}>
+    <StyledTakeout takeoutModal={takeoutModal}>
       <div className='upSide'>
         <h2>SUBBWAY</h2>
       </div>

@@ -1,16 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { MAIN_COLOR } from '../theme';
 import { useEffect, useRef, useState } from 'react';
-
-const fadeInOut = keyframes`
-  0% {
-    
-  }
-
-  100% {
-
-  }
-`;
+import { clicked } from '../styles/animation';
 
 const StyledGnbList = styled.ul`
   display: flex;
@@ -38,7 +29,7 @@ const StyledGnbList = styled.ul`
     }
 
     &.on {
-      animation: name duration timing-function delay iteration-count direction fill-mode;
+      animation: ${clicked} 0.3s forwards;
       p {
         color: ${MAIN_COLOR};
       }

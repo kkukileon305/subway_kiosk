@@ -23,7 +23,7 @@ const StyledCartItem = styled.li`
   div.show {
     height: 100px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 20px 0;
     gap: 10px;

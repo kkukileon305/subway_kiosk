@@ -8,6 +8,7 @@ import GnbList from '../components/GnbList';
 import getMenuData from '../getMenuData';
 import SkeletonList from '../components/SkeletonList';
 import ItemModal from '../components/ItemModal';
+import CartModal from '../components/CartModal';
 
 const Home = () => {
   let mainX = 0;
@@ -17,21 +18,17 @@ const Home = () => {
   const [menuData, setMenuData] = useState();
   const [cart, setCart] = useState([]);
   const [item, setItem] = useState();
+  const [isTakeout, setIsTakeout] = useState(false);
   const mainRef = useRef(null);
-  const [userState, setUserState] = useState({
-    takeout: false,
-    pickItem: [],
-  });
+  const [cartModal, setCartModal] = useState(false);
 
   const init = () => {
-    setUserState({
-      takeout: false,
-      pickItem: [],
-    });
+    setIsTakeout(false);
     setItem();
     setCart([]);
     setMenu(0);
     setTakeoutModal(true);
+    setCartModal(false);
   };
 
   useEffect(() => {
@@ -64,8 +61,8 @@ const Home = () => {
       <TakeoutModal
         takeoutModal={takeoutModal} //
         setTakeoutModal={setTakeoutModal}
-        userState={userState}
-        setUserState={setUserState}
+        isTakeout={isTakeout}
+        setIsTakeout={setIsTakeout}
       />
       {item && (
         <ItemModal //
@@ -75,7 +72,16 @@ const Home = () => {
           setCart={setCart}
         />
       )}
-      <Header init={init} />
+      {cartModal && (
+        <CartModal //
+          cart={cart}
+          isTakeout={isTakeout}
+          cartModal={cartModal}
+          setCartModal={setCartModal}
+          init={init}
+        />
+      )}
+      <Header init={init} setCartModal={setCartModal} />
       <StyledMain ref={mainRef} menu={menu}>
         <GnbList
           gnbData={gnbData} //
@@ -92,6 +98,7 @@ const Home = () => {
             menu={menu}
             pickItemHandler={pickItemHandler}
             cart={cart}
+            isTakeout={isTakeout}
           />
         )}
       </StyledMain>

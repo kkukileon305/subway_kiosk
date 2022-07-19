@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AiOutlineHome } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineShoppingCart } from 'react-icons/ai';
 import { MAIN_COLOR } from '../theme';
 
 const StyledHeader = styled.header`
@@ -19,7 +19,7 @@ const StyledHeader = styled.header`
 
   ul {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 20px;
 
     li {
@@ -31,13 +31,16 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Header = ({ init }) => {
+const Header = ({ init, setCartModal }) => {
   return (
     <StyledHeader>
       <h1>SUBBWAY</h1>
       <ul>
         <li onClick={init}>
           <AiOutlineHome size={20} color='white' />
+        </li>
+        <li onClick={() => setCartModal(true)}>
+          <AiOutlineShoppingCart size={20} color='white' />
         </li>
       </ul>
     </StyledHeader>

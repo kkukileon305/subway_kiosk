@@ -89,7 +89,7 @@ const ItemModal = ({ item, setItem, cart, setCart }) => {
               </div>
             </li>
             <li>
-              <h4>원하는 소스를 선택해주세요</h4>
+              <h4>원하는 소스(최대 2개)를 선택해주세요</h4>
               <Sauce sauceHandler={sauceHandler} />
             </li>
             <li>

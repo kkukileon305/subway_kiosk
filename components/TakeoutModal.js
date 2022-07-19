@@ -48,7 +48,7 @@ const StyledTakeout = styled.div`
   }
 `;
 
-const TakeoutModal = ({ takeoutModal, setTakeoutModal, userState, setUserState }) => {
+const TakeoutModal = ({ takeoutModal, setTakeoutModal, isTakeout, setIsTakeout }) => {
   return (
     <StyledTakeout takeoutModal={takeoutModal}>
       <div className='upSide'>
@@ -62,7 +62,7 @@ const TakeoutModal = ({ takeoutModal, setTakeoutModal, userState, setUserState }
             height={60}
             onClick={(e) => {
               setTakeoutModal(false);
-              setUserState({ ...userState, takeout: false });
+              setIsTakeout(false);
             }}
           >
             먹고가기
@@ -72,7 +72,7 @@ const TakeoutModal = ({ takeoutModal, setTakeoutModal, userState, setUserState }
             height={60}
             onClick={() => {
               setTakeoutModal(false);
-              setUserState({ ...userState, takeout: true });
+              setIsTakeout(true);
             }}
           >
             포장하기

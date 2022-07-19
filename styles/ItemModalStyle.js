@@ -23,7 +23,7 @@ const StyledModal = styled.div`
       justify-content: flex-start;
       align-items: center;
       gap: 30px;
-      padding-left: 35px;
+      padding: 30px 30px 0 30px;
       position: relative;
 
       &::after {
@@ -91,12 +91,15 @@ const StyledModal = styled.div`
             font-size: 20px;
             font-weight: 700;
             color: ${MAIN_COLOR};
+            text-align: center;
+            line-height: 1.2;
+            word-break: keep-all;
           }
 
           & > div.lengthContainer {
             display: flex;
             gap: 40px;
-            margin-top: 60px;
+            margin-top: 100px;
 
             button {
               width: 100px;

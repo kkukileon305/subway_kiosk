@@ -66,7 +66,7 @@ const Result = ({ length, sauceList, vegList, cart, setCart, item, setItem }) =>
     setCart([
       ...cart,
       {
-        name: item.krName,
+        item,
         length,
         sauceList,
         vegList,

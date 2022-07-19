@@ -58,7 +58,7 @@ const StyledDiv = styled.div`
   }
 `;
 
-const MenuList = ({ menuData, menu, pickItemHandler, cart }) => {
+const MenuList = ({ menuData, menu, pickItemHandler, cart, isTakeout }) => {
   const [curMenuName, setCurMenuName] = useState('샌드위치');
   const [curMenu, setCurMenu] = useState();
 
@@ -72,7 +72,7 @@ const MenuList = ({ menuData, menu, pickItemHandler, cart }) => {
 
   return (
     <StyledDiv>
-      <h2 onClick={() => console.log(cart)}>{curMenuName.toUpperCase()}</h2>
+      <h2 onClick={() => console.log(cart, isTakeout)}>{curMenuName.toUpperCase()}</h2>
       <ul>
         {curMenu &&
           curMenu.map((e, i) => (

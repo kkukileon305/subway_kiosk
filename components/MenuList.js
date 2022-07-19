@@ -58,7 +58,7 @@ const StyledDiv = styled.div`
   }
 `;
 
-const MenuList = ({ menuData, menu, pickItemHandler, cart, isTakeout }) => {
+const MenuList = ({ menuData, menu, pickItemHandler, cart, isTakeout, setScrollalbe }) => {
   const [curMenuName, setCurMenuName] = useState('샌드위치');
   const [curMenu, setCurMenu] = useState();
 

@@ -59,7 +59,7 @@ const StyledResult = styled.div`
   }
 `;
 
-const Result = ({ length, sauceList, vegList, cart, setCart, item, setItem }) => {
+const Result = ({ length, sauceList, vegList, cart, setCart, item, setItem, setScrollalbe }) => {
   const [mes, setMes] = useState('');
 
   const cartHandler = () => {
@@ -74,6 +74,7 @@ const Result = ({ length, sauceList, vegList, cart, setCart, item, setItem }) =>
       },
     ]);
     setItem();
+    setScrollalbe(true);
   };
 
   return (

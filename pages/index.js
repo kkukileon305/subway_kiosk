@@ -21,6 +21,7 @@ const Home = () => {
   const [isTakeout, setIsTakeout] = useState(false);
   const mainRef = useRef(null);
   const [cartModal, setCartModal] = useState(false);
+  const [scrollalbe, setScrollalbe] = useState(false);
 
   const init = () => {
     setIsTakeout(false);
@@ -29,6 +30,7 @@ const Home = () => {
     setMenu(0);
     setTakeoutModal(true);
     setCartModal(false);
+    setScrollalbe(false);
   };
 
   useEffect(() => {
@@ -54,6 +56,7 @@ const Home = () => {
 
   const pickItemHandler = (e) => {
     setItem(e);
+    setScrollalbe(false);
   };
 
   return (
@@ -63,6 +66,7 @@ const Home = () => {
         setTakeoutModal={setTakeoutModal}
         isTakeout={isTakeout}
         setIsTakeout={setIsTakeout}
+        setScrollalbe={setScrollalbe}
       />
       {item && (
         <ItemModal //
@@ -70,6 +74,7 @@ const Home = () => {
           setItem={setItem}
           cart={cart}
           setCart={setCart}
+          setScrollalbe={setScrollalbe}
         />
       )}
       {cartModal && (
@@ -79,10 +84,11 @@ const Home = () => {
           cartModal={cartModal}
           setCartModal={setCartModal}
           init={init}
+          setScrollalbe={setScrollalbe}
         />
       )}
-      <Header init={init} setCartModal={setCartModal} />
-      <StyledMain ref={mainRef} menu={menu}>
+      <Header init={init} setCartModal={setCartModal} setScrollalbe={setScrollalbe} />
+      <StyledMain ref={mainRef} menu={menu} scrollalbe={scrollalbe}>
         <GnbList
           gnbData={gnbData} //
           menu={menu}
@@ -99,6 +105,7 @@ const Home = () => {
             pickItemHandler={pickItemHandler}
             cart={cart}
             isTakeout={isTakeout}
+            setScrollalbe={setScrollalbe}
           />
         )}
       </StyledMain>

@@ -48,7 +48,12 @@ const StyledTakeout = styled.div`
   }
 `;
 
-const TakeoutModal = ({ takeoutModal, setTakeoutModal, isTakeout, setIsTakeout }) => {
+const TakeoutModal = ({
+  takeoutModal, //
+  setTakeoutModal,
+  setIsTakeout,
+  setScrollalbe,
+}) => {
   return (
     <StyledTakeout takeoutModal={takeoutModal}>
       <div className='upSide'>
@@ -58,21 +63,23 @@ const TakeoutModal = ({ takeoutModal, setTakeoutModal, isTakeout, setIsTakeout }
         <h3>식사 장소를 선택해주세요</h3>
         <div className='btnContainer'>
           <Button
-            width={160}
+            width={130}
             height={60}
             onClick={(e) => {
               setTakeoutModal(false);
               setIsTakeout(false);
+              setScrollalbe(true);
             }}
           >
             먹고가기
           </Button>
           <Button
-            width={160}
+            width={130}
             height={60}
             onClick={() => {
               setTakeoutModal(false);
               setIsTakeout(true);
+              setScrollalbe(true);
             }}
           >
             포장하기

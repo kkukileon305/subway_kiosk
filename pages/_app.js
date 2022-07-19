@@ -16,7 +16,6 @@ const GlobalStyle = createGlobalStyle`
     width: 100vw;
     height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
     background-color: lightgray;
   }
@@ -26,7 +25,6 @@ const GlobalStyle = createGlobalStyle`
     max-width: 550px;
     background-color: white;
     position: relative;
-    overflow: hidden;
   }
 
   a {

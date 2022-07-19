@@ -31,7 +31,7 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Header = ({ init, setCartModal }) => {
+const Header = ({ init, setCartModal, setScrollalbe }) => {
   return (
     <StyledHeader>
       <h1>SUBBWAY</h1>
@@ -39,7 +39,12 @@ const Header = ({ init, setCartModal }) => {
         <li onClick={init}>
           <AiOutlineHome size={20} color='white' />
         </li>
-        <li onClick={() => setCartModal(true)}>
+        <li
+          onClick={() => {
+            setCartModal(true);
+            setScrollalbe(false);
+          }}
+        >
           <AiOutlineShoppingCart size={20} color='white' />
         </li>
       </ul>

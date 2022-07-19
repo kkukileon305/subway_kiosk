@@ -152,7 +152,12 @@ const CartModal = ({ cart, isTakeout, cartModal, setCartModal, init }) => {
   return (
     <StyledCart cartModal={cartModal} success={success}>
       <div className='container'>
-        <GrClose onClick={() => setCartModal(false)} />
+        <GrClose
+          onClick={() => {
+            setCartModal(false);
+            setScrollalbe(true);
+          }}
+        />
         <div className='resultContainer'>
           <div className='cost'>
             <h2>카트</h2>

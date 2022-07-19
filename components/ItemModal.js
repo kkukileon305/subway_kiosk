@@ -8,7 +8,7 @@ import Veg from './Veg';
 import Result from './Result';
 import StyledModal from '../styles/ItemModalStyle';
 
-const ItemModal = ({ item, setItem, cart, setCart }) => {
+const ItemModal = ({ item, setItem, cart, setCart, setScrollalbe }) => {
   const downRef = useRef(null);
 
   const [step, setStep] = useState(0);
@@ -22,6 +22,7 @@ const ItemModal = ({ item, setItem, cart, setCart }) => {
     setLength();
     setSauceList([]);
     setVegList([]);
+    setScrollalbe(true);
   };
 
   const legnthHandler = (selectLength) => {
@@ -107,6 +108,7 @@ const ItemModal = ({ item, setItem, cart, setCart }) => {
                 setCart={setCart}
                 item={item}
                 setItem={setItem}
+                setScrollalbe={setScrollalbe}
               />
             </li>
           </ul>

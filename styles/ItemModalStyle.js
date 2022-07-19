@@ -4,7 +4,7 @@ import { MAIN_COLOR, YELLOW_COLOR } from '../theme';
 const StyledModal = styled.div`
   width: 100%;
   height: 100%;
-  position: fixed;
+  position: absolute;
   z-index: 500;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;

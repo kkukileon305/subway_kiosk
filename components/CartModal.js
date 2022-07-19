@@ -8,7 +8,7 @@ import { BsCheckCircleFill } from 'react-icons/bs';
 const StyledCart = styled.div`
   width: 100%;
   height: 100%;
-  position: fixed;
+  position: absolute;
   z-index: 500;
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;

@@ -72,7 +72,7 @@ const MenuList = ({ menuData, menu, pickItemHandler, cart, isTakeout, setScrolla
 
   return (
     <StyledDiv>
-      <h2 onClick={() => console.log(cart, isTakeout)}>{curMenuName.toUpperCase()}</h2>
+      <h2>{curMenuName.toUpperCase()}</h2>
       <ul>
         {curMenu &&
           curMenu.map((e, i) => (

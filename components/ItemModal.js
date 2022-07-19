@@ -60,7 +60,7 @@ const ItemModal = ({ item, setItem, cart, setCart, setScrollalbe }) => {
   };
 
   const showResult = () => {
-    setStep(3);
+    setStep(step + 1);
     downRef.current.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -92,11 +92,12 @@ const ItemModal = ({ item, setItem, cart, setCart, setScrollalbe }) => {
             <li>
               <h4>원하는 소스(최대 2개)를 선택해주세요</h4>
               <Sauce sauceHandler={sauceHandler} />
+              <button onClick={showResult}>다음</button>
             </li>
             <li>
               <h4>제외할 야채를 골라주세요</h4>
               <Veg vegHandler={vegHandler} />
-              <button onClick={showResult}>확인</button>
+              <button onClick={showResult}>다음</button>
             </li>
             <li>
               <h4>확인후 카트에 넣어주세요</h4>

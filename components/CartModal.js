@@ -141,13 +141,13 @@ const StyledCart = styled.div`
   }
 `;
 
-const CartModal = ({ cart, isTakeout, cartModal, setCartModal, init, setScrollalbe }) => {
+const CartModal = ({ cart, setCart, isTakeout, cartModal, setCartModal, init, setScrollalbe }) => {
   const [totalCost, setTotalCost] = useState(0);
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    setTotalCost(cart.reduce((acc, cur) => acc + cur.item.price / (cur.length / 15), 0));
-  }, []);
+    setTotalCost(cart.reduce((acc, cur) => acc + cur.item.price * (cur.length / 15), 0));
+  }, [cart.length]);
 
   return (
     <StyledCart cartModal={cartModal} success={success}>
@@ -164,7 +164,7 @@ const CartModal = ({ cart, isTakeout, cartModal, setCartModal, init, setScrollal
             <div className='listContainer'>
               <ul>
                 {cart.map((e, i) => (
-                  <CartItem key={i} cartItem={e} />
+                  <CartItem key={i} cartItem={e} cart={cart} setCart={setCart} index={i} />
                 ))}
               </ul>
               <h2>금액</h2>

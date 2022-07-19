@@ -71,11 +71,26 @@ const StyledModal = styled.div`
     div.downSide {
       height: 500px;
       position: relative;
-      overflow-y: ${({ step }) => (step === 0 ? 'hidden' : 'scroll')};
+      overflow-y: scroll;
       overflow-x: hidden;
 
       & > ul {
+        overflow: hidden;
         width: 400%;
+        height: ${({ step }) => {
+          switch (step) {
+            case 0:
+              return '400px';
+            case 1:
+              return '980px';
+            case 2:
+              return '900px';
+            case 3:
+              return '910px';
+            default:
+              return 'fit-content';
+          }
+        }};
         display: flex;
         transition: 0.3s;
         transform: translateX(${({ step }) => -25 * step}%);
@@ -128,7 +143,6 @@ const StyledModal = styled.div`
             background-color: ${MAIN_COLOR};
             color: white;
             font-weight: 700;
-            margin-bottom: 80px;
           }
         }
       }

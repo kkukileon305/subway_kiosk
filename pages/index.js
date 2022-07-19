@@ -85,6 +85,7 @@ const Home = () => {
           setCartModal={setCartModal}
           init={init}
           setScrollalbe={setScrollalbe}
+          setCart={setCart}
         />
       )}
       <Header init={init} setCartModal={setCartModal} setScrollalbe={setScrollalbe} />

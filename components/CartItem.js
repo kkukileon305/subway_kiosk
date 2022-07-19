@@ -2,11 +2,13 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { AiOutlineArrowDown, AiOutlineCheck } from 'react-icons/ai';
 import Image from 'next/image';
+import { GrClose } from 'react-icons/gr';
 
 const StyledCartItem = styled.li`
   width: 100%;
   height: ${({ optionView }) => (optionView ? '500px' : '100px')};
   margin-bottom: 20px;
+  position: relative;
   overflow: hidden;
   transition: 0.4s;
   background-color: ${({ optionView }) => (optionView ? 'lightgray' : 'white')};
@@ -35,19 +37,26 @@ const StyledCartItem = styled.li`
       height: 100%;
       width: 140px;
 
-      button {
-        border: none;
-        background-color: transparent;
-        text-align: left;
-        margin: 0;
-        padding: 0;
+      div.optBtnContainer {
         display: flex;
-        align-items: center;
-        gap: 4px;
+        justify-content: space-between;
 
-        svg {
-          transition: 0.4s;
-          transform: rotate(${({ optionView }) => (optionView ? '180deg' : '0')});
+        button {
+          border: none;
+          background-color: transparent;
+          text-align: left;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          &:first-of-type {
+            svg {
+              transition: 0.4s;
+              transform: rotate(${({ optionView }) => (optionView ? '180deg' : '0')});
+            }
+          }
         }
       }
     }
@@ -90,17 +99,28 @@ const CartItem = ({
     vegList,
     mes,
   },
+  setCart,
+  cart,
+  index,
 }) => {
   const [optionView, setOptionView] = useState(false);
+
+  const removeHandler = () => setCart(cart.filter((_, i) => i !== index));
+
   return (
-    <StyledCartItem optionView={optionView} onClick={() => setOptionView(!optionView)}>
+    <StyledCartItem optionView={optionView}>
       <div className='show'>
         <Image src={imageUrl} alt={krName} width={120} height={80} />
         <div className='right'>
           <h4>{krName}</h4>
-          <button>
-            옵션 보기 <AiOutlineArrowDown />
-          </button>
+          <div className='optBtnContainer'>
+            <button onClick={() => setOptionView(!optionView)}>
+              옵션 보기 <AiOutlineArrowDown />
+            </button>
+            <button onClick={removeHandler}>
+              <GrClose />
+            </button>
+          </div>
         </div>
       </div>
       <div className='hidden'>

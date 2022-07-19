@@ -141,7 +141,7 @@ const StyledCart = styled.div`
   }
 `;
 
-const CartModal = ({ cart, isTakeout, cartModal, setCartModal, init }) => {
+const CartModal = ({ cart, isTakeout, cartModal, setCartModal, init, setScrollalbe }) => {
   const [totalCost, setTotalCost] = useState(0);
   const [success, setSuccess] = useState(false);
 

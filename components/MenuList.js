@@ -10,6 +10,7 @@ const StyledDiv = styled.div`
     font-weight: 800;
     margin-left: 35px;
     margin-top: 30px;
+    margin-bottom: 20px;
   }
 
   ul {
@@ -17,7 +18,7 @@ const StyledDiv = styled.div`
 
     li {
       width: 100%;
-      height: 150px;
+      height: 130px;
       background-color: white;
       display: flex;
       justify-content: flex-start;
@@ -30,6 +31,7 @@ const StyledDiv = styled.div`
         height: 100px;
         background-size: cover;
         background-position: center;
+        position: relative;
       }
 
       div.right {
@@ -40,6 +42,7 @@ const StyledDiv = styled.div`
         gap: 30px;
         white-space: pre-wrap;
         word-break: keep-all;
+        position: relative;
 
         h3 {
           font-size: 20px;
@@ -54,13 +57,64 @@ const StyledDiv = styled.div`
           color: rgb(140, 140, 140);
         }
       }
+
+      &.touchStart {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100vw;
+          height: 100vw;
+          border-radius: 50%;
+          background-color: lightgray;
+          animation: touchSizeUp 0.4s forwards;
+
+          @keyframes touchSizeUp {
+            from {
+              transform: translate(${({ trans: { x, y } }) => `calc(${x}px - 50vw), calc(${y}px - 50vw)`}) scale(0);
+              opacity: 1;
+            }
+            to {
+              transform: translate(${({ trans: { x, y } }) => `calc(${x}px - 50vw), calc(${y}px - 50vw)`}) scale(3);
+              opacity: 0.5;
+            }
+          }
+        }
+      }
     }
   }
 `;
 
 const MenuList = ({ menuData, menu, pickItemHandler }) => {
-  const [curMenuName, setCurMenuName] = useState('샌드위치');
+  const [curMenuName, setCurMenuName] = useState('');
   const [curMenu, setCurMenu] = useState();
+  const [trans, setTrans] = useState({ x: 0, y: 0 });
+  const [time, setTime] = useState(0);
+
+  const touchStartHandler = ({ target, changedTouches: [{ clientX, clientY }] }) => {
+    const li = target.closest('li');
+    const { x: liX, y: liY } = li.getBoundingClientRect();
+
+    setTime(new Date().getTime());
+    setTrans({ x: clientX - liX, y: clientY - liY });
+    li.classList.add('touchStart');
+  };
+
+  const touchEndHandler = ({ target }) => {
+    const li = target.closest('li');
+
+    const duration = new Date().getTime() - time;
+
+    if (duration < 300) {
+      setTimeout(() => li.classList.remove('touchStart'), 300);
+    } else {
+      li.classList.remove('touchStart');
+    }
+  };
 
   useEffect(() => {
     setCurMenuName(Object.keys(menuData)[menu]);
@@ -71,12 +125,18 @@ const MenuList = ({ menuData, menu, pickItemHandler }) => {
   }, [curMenuName]);
 
   return (
-    <StyledDiv>
+    <StyledDiv trans={trans}>
       <h2>{curMenuName.toUpperCase()}</h2>
       <ul>
         {curMenu &&
           curMenu.map((e, i) => (
-            <li key={i} onClick={() => pickItemHandler(e)}>
+            <li
+              key={i} //
+              onClick={() => setTimeout(() => pickItemHandler(e), 100)}
+              onTouchStart={touchStartHandler}
+              onTouchEnd={touchEndHandler}
+              onTouchCancel={touchEndHandler}
+            >
               <div className='circle' style={{ backgroundImage: `url(${e.imageUrl})` }}></div>
               <div className='right'>
                 <h3>{e.krName}</h3>

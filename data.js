@@ -36,6 +36,27 @@ export const menuData = {
       imageUrl: 'https://www.subway.co.kr/upload/menu/Italian_B.M.T_20211231094910899.png',
       price: 10000,
     },
+    {
+      krName: '스파이시 쉬림프 아보카도',
+      enName: 'Spicy Shrimp Avocado',
+      description: '오븐에 구워 담백한 저칼로리 닭가슴살의 건강한 풍미',
+      imageUrl: 'https://www.subway.co.kr/upload/menu/%EC%8A%A4%ED%8C%8C%EC%9D%B4%EC%8B%9C%EC%89%AC%EB%A6%BC%ED%94%84%EC%95%84%EB%B3%B4%EC%B9%B4%EB%8F%84_20220615022849892.png',
+      price: 10000,
+    },
+    {
+      krName: '에그마요',
+      enName: 'Egg Mayo',
+      description: '오븐에 구워 담백한 저칼로리 닭가슴살의 건강한 풍미',
+      imageUrl: 'https://www.subway.co.kr/upload/menu/Egg-Mayo_20211231094817112.png',
+      price: 10000,
+    },
+    {
+      krName: '이탈리안 비엠티',
+      enName: 'Italian B.M.T.™',
+      description: '오븐에 구워 담백한 저칼로리 닭가슴살의 건강한 풍미',
+      imageUrl: 'https://www.subway.co.kr/upload/menu/Italian_B.M.T_20211231094910899.png',
+      price: 10000,
+    },
   ],
   wrap: [
     {
@@ -50,6 +71,20 @@ export const menuData = {
       enName: 'Shrimp Egg Mayo Wrap',
       description: '부드럽고 고소한 에그마요 안에 탱글한 통새우가 푹~! 최상의 야채와 소스 조합으로 탄생한 쉬림프 에그마요 랩!!',
       imageUrl: 'https://www.subway.co.kr/upload/menu/shrimp_egg_mayo_wrap_20210315105650669.jpg',
+      price: 10000,
+    },
+    {
+      krName: '쉬림프 에그 그릴드 랩',
+      enName: 'Shrimp Egg Grilled Wrap',
+      description: '더 뜨겁게, 더 맛있게 즐기자! 탱글한 새우와 부드러운 오믈렛의 만남',
+      imageUrl: 'https://www.subway.co.kr/upload/menu/shrimp_egg_grilled_wrap_20210315110327118.png',
+      price: 10000,
+    },
+    {
+      krName: '치킨 베이컨 미니 그릴드 랩',
+      enName: 'Chicken Bacon Mini Grilled Wrap',
+      description: '더 뜨겁게 더 맛있게 즐기자! 담백한 치킨, 바삭한 베이컨 비츠가 쏙',
+      imageUrl: 'https://www.subway.co.kr/upload/menu/chicken_bacon_mini_grilled_wrap_20210315110305393.png',
       price: 10000,
     },
     {

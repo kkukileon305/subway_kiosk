@@ -30,6 +30,17 @@ const StyledCartItem = styled.li`
     padding: 20px 0;
     gap: 10px;
 
+    & > button {
+      border: none;
+      background-color: transparent;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 10px;
+    }
+
     div.right {
       display: flex;
       flex-direction: column;
@@ -37,26 +48,19 @@ const StyledCartItem = styled.li`
       height: 100%;
       width: 140px;
 
-      div.optBtnContainer {
+      button {
+        border: none;
+        background-color: transparent;
+        text-align: left;
+        margin: 0;
+        padding: 0;
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        gap: 4px;
 
-        button {
-          border: none;
-          background-color: transparent;
-          text-align: left;
-          margin: 0;
-          padding: 0;
-          display: flex;
-          align-items: center;
-          gap: 4px;
-
-          &:first-of-type {
-            svg {
-              transition: 0.4s;
-              transform: rotate(${({ optionView }) => (optionView ? '180deg' : '0')});
-            }
-          }
+        svg {
+          transition: 0.4s;
+          transform: rotate(${({ optionView }) => (optionView ? '180deg' : '0')});
         }
       }
     }
@@ -113,15 +117,13 @@ const CartItem = ({
         <Image src={imageUrl} alt={krName} width={120} height={80} />
         <div className='right'>
           <h4>{krName}</h4>
-          <div className='optBtnContainer'>
-            <button onClick={() => setOptionView(!optionView)}>
-              옵션 보기 <AiOutlineArrowDown />
-            </button>
-            <button onClick={removeHandler}>
-              <GrClose />
-            </button>
-          </div>
+          <button onClick={() => setOptionView(!optionView)}>
+            옵션 보기 <AiOutlineArrowDown />
+          </button>
         </div>
+        <button onClick={removeHandler}>
+          <GrClose />
+        </button>
       </div>
       <div className='hidden'>
         <h4>

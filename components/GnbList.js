@@ -89,7 +89,7 @@ const GnbList = ({ gnbData, menu, mainX, setMenu, loading }) => {
 
     gnbRef.current.style.transition = '0.3s';
 
-    if (speed < -0.3) {
+    if (speed < -0.3 && speed !== 0) {
       gnbRef.current.style.transform = `translateX(-${ulWidth * 0.41666}px)`;
     } else if (speed > 0.3) {
       gnbRef.current.style.transform = `translateX(0)`;

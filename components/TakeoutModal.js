@@ -65,7 +65,7 @@ const TakeoutModal = ({
           <Button
             width={130}
             height={60}
-            onClick={(e) => {
+            onClick={() => {
               setTakeoutModal(false);
               setIsTakeout(false);
               setScrollalbe(true);

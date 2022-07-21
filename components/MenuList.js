@@ -65,8 +65,8 @@ const StyledDiv = styled.div`
         &::before {
           content: '';
           position: absolute;
-          left: 0;
-          top: 0;
+          left: ${({ trans: { x } }) => `calc(${x}px - 50vw)`};
+          top: ${({ trans: { y } }) => `calc(${y}px - 50vw)`};
           width: 100vw;
           height: 100vw;
           border-radius: 50%;
@@ -75,11 +75,11 @@ const StyledDiv = styled.div`
 
           @keyframes touchSizeUp {
             from {
-              transform: translate(${({ trans: { x, y } }) => `calc(${x}px - 50vw), calc(${y}px - 50vw)`}) scale(0);
+              transform: scale(0);
               opacity: 1;
             }
             to {
-              transform: translate(${({ trans: { x, y } }) => `calc(${x}px - 50vw), calc(${y}px - 50vw)`}) scale(3);
+              transform: scale(3);
               opacity: 0.5;
             }
           }

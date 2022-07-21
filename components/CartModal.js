@@ -4,6 +4,7 @@ import CartItem from './CartItem';
 import { useEffect, useState } from 'react';
 import { MAIN_COLOR } from '../theme';
 import { BsCheckCircleFill } from 'react-icons/bs';
+import Button from './Button';
 
 const StyledCart = styled.div`
   width: 100%;
@@ -87,7 +88,6 @@ const StyledCart = styled.div`
 
           & > button {
             margin: 30px 0;
-            padding: 10px 0;
             width: 100%;
             font-size: 20px;
             background-color: ${MAIN_COLOR};
@@ -107,7 +107,7 @@ const StyledCart = styled.div`
         width: 50%;
         height: 100%;
         background-color: white;
-        padding: 280px 20px 20px 20px;
+        padding: 200px 20px 20px 20px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -178,7 +178,9 @@ const CartModal = ({ cart, setCart, isTakeout, cartModal, setCartModal, init, se
               </div>
               <h2>먹을 방식</h2>
               <p>{isTakeout ? '포장해가기' : '매장에서 먹기'}</p>
-              <button onClick={() => setSuccess(true)}>결제하기</button>
+              <Button height={50} borderRadius={0} onClick={() => setSuccess(true)}>
+                결제하기
+              </Button>
             </div>
           </div>
           <div className='result'>
@@ -186,7 +188,9 @@ const CartModal = ({ cart, setCart, isTakeout, cartModal, setCartModal, init, se
               <h2>결제 완료</h2>
               <BsCheckCircleFill size={100} color={MAIN_COLOR} />
             </div>
-            <button onClick={init}>첫 화면으로 가기</button>
+            <Button height={50} borderRadius={0} onClick={init}>
+              첫 화면으로 가기
+            </Button>
           </div>
         </div>
       </div>
